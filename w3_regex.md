@@ -2,7 +2,11 @@
 
 ## grep
         dictionary file /usr/share/dict/words 
-        
+        ```
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
         ```
         grep [-option] REGEX
         ```  
