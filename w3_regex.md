@@ -53,7 +53,7 @@
         match UK postcodes.
             ``` grep -E [A-Z]{2}[0-9][\ ]?[0-9][A-Z]{2} ```
             ``` grep -E '[A-Z]{2}[0-9] ?[0-9][A-Z]{2}' ```
-        find an example that would match the above but fail to match the following.
+        find an example that would match the following but fail to match the above.
         ``` ^(
             ([A-Z]{1,2}[0-9][A-Z0-9]?|ASCN|STHL|TDCU|BBND|[BFS]IQQ|PCRN|TKCA) ?[0-9][A-Z]{2}
             |BFPO ?[0-9]{1,4}
