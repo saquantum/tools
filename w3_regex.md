@@ -21,7 +21,7 @@
                 ```{n}``` exactly n 
                 ```{m,n}``` m or n
 
-### exercise
+#### exercise
         All words containing the letter capital Q. 
             ``` grep Q ```
         All words starting with the letter R, in either upper or lower-case.  
@@ -73,7 +73,7 @@
                     ```\( \)``` create group in SOURCE to be referred in DEST
                     
 
-### exercise
+#### exercise
         find all words ending in 'ay' and change 'day' into 'week'.
             ``` grep 'ay$' | sed 's/day/week/' ```
         In the same selection as above, replace all words that begin with 's' with the word 'sway'.
