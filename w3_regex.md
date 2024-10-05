@@ -3,7 +3,10 @@
 ## grep
         dictionary file /usr/share/dict/words 
         
-        ```grep [-option] REGEX```  (Global Regular Expression Print)
+        ```
+        grep [-option] REGEX
+        ```  
+        (Global Regular Expression Print)
             options:
                 ```-i``` case-insensitive
                 ```-v``` invert match, that do not match the expression
