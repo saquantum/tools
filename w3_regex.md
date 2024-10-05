@@ -3,37 +3,37 @@
 ## grep
         dictionary file /usr/share/dict/words 
         
-        grep [-option] REGEX  (Global Regular Expression Print)
+        ```grep [-option] REGEX```  (Global Regular Expression Print)
             options:
-                -i case-insensitive
-                -v invert match, that do not match the expression
-                -E extended regex  
-                -r recursively search through directories
-                -c count lines
-                -w match whole word
-                -o only display the matched text and output each match in seperate lines
+                ```-i``` case-insensitive
+                ```-v``` invert match, that do not match the expression
+                ```-E``` extended regex  
+                ```-r``` recursively search through directories
+                ```-c``` count lines
+                ```-w``` match whole word
+                ```-o``` only display the matched text and output each match in seperate lines
             REGEX:
-                ^ begin
-                $ end
-                [^ ] exclude
-                . any character
-                * 0 or more
-                + 1 or more
-                {n} exactly n 
-                {m,n} m or n
+                ```^``` begin
+                ```$``` end
+                ```[^ ]``` exclude
+                ```.``` any character
+                ```*``` 0 or more
+                ```+``` 1 or more
+                ```{n}``` exactly n 
+                ```{m,n}``` m or n
 
 ### exercise
         All words containing the letter capital Q. 
             ``` grep Q ```
         All words starting with the letter R, in either upper or lower-case.  
-            ``` grep -i R
+            ``` grep -i R ```
         All words ending in j. 
-            ``` grep 'j$'
+            ``` grep 'j$' ```
         The number of words containing the letter Q, ignoring case.
             ``` grep -ic Q ```
             ``` grep -i Q | wc -l ```
         The first five words containing the letter sequence 'cl'.
-            ``` grep cl | head -n 5
+            ``` grep cl | head -n 5 ```
         All words containing the sequence "kp", but not "ckp". 
             ``` grep [^c]kp ```
         The last 15 words of exactly two letters.
@@ -55,7 +55,7 @@
             ``` grep -E [A-Z]{2}[0-9][\ ]?[0-9][A-Z]{2} ```
             ``` grep -E '[A-Z]{2}[0-9] ?[0-9][A-Z]{2}' ```
         find an example that would match the above but fail to match the following.
-        ^(
+        ``` ^(
             ([A-Z]{1,2}[0-9][A-Z0-9]?|ASCN|STHL|TDCU|BBND|[BFS]IQQ|PCRN|TKCA) ?[0-9][A-Z]{2}
             |BFPO ?[0-9]{1,4}
             |(KY[0-9]|MSR|VG|AI)[ -]?[0-9]{4}
@@ -63,15 +63,15 @@
             |GE ?CX
             |GIR ?0A{2}
             |SAN ?TA1
-        )$
+        )$ ```
             
 ## sed 
-            sed [options] 's/SOURCE/DEST/' 
+            ```sed [options] 's/SOURCE/DEST/' ```
                 options:
-                    -e multiple commands in one line
-                    -E extended regex
-                's/SOURCE/DEST/'
-                    \( \) create group in SOURCE to be referred in DEST
+                    ```-e``` multiple commands in one line
+                    ```-E``` extended regex
+                ```'s/SOURCE/DEST/'```
+                    ```\( \)``` create group in SOURCE to be referred in DEST
                     
 
 ### exercise
