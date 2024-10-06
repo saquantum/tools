@@ -23,7 +23,7 @@ dictionary file /usr/share/dict/words
 
 ​        REGEX:
 
-​           ``` ^``` begin
+​           ```^``` begin
 
 ​            ```$``` end
 
