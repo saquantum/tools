@@ -74,9 +74,7 @@ dictionary file /usr/share/dict/words
 
 ​	All words containing the sequence "kp", but not "ckp". 
 
-        ``` 
-    grep [^c]kp 
-        ```
+    	grep [^c]kp 
 
 ​	The last 15 words of exactly two letters.
 
@@ -86,47 +84,33 @@ dictionary file /usr/share/dict/words
 
 ​    All three-letter words with no vowels (aeiou).
 
-        ``` 
-    grep -iE ^[^aeiou]{3}$ 
-        ```
+    	grep -iE ^[^aeiou]{3}$ 
 
 ​    All words of exactly 7 letters, where the third one is an e and the word ends "-ded".
 
-        ``` 
-    grep ^..e.ded$ 
-        ```
+    	grep ^..e.ded$ 
 
 ​    Find all words that start with a P (whether capitalised or not), and contain at least four instances of the letter a. 
 
-        ``` 
-    grep '^[pP].*a.*a.*a.*a.*$' 
-        ```
+    	grep '^[pP].*a.*a.*a.*a.*$' 
 
 ​    Contrive a file such that grep returns multiple lines but grep -w returns only one line.
 
-        ``` 
-    echo -e "cat\ncatalog\ncater\nscatter" | grep -w 'cat' 
-        ```
+    	echo -e "cat\ncatalog\ncater\nscatter" | grep -w 'cat' 
 
 ​    find a situation where grep -o PATTERN FILE | wc -l and grep -c PATTERN FILE produce different results
 
-        ```
-    echo -e "one cat two cat\none cat" | grep -c cat -> 2
-    echo -e "one cat two cat\none cat" | grep -o cat | wc -l -> 3
-        ```
+    	echo -e "one cat two cat\none cat" | grep -c cat -> 2
+    	echo -e "one cat two cat\none cat" | grep -o cat | wc -l -> 3
 
 ​	match both 'encyclopaedia' and 'encyclopedia' but nothing else.
 
-        ```
-    grep -wE 'encyclopa?edia' 
-        ```
+    	grep -wE 'encyclopa?edia' 
 
 ​    match UK postcodes.
 
-        ```
-    grep -E [A-Z]{2}[0-9][\ ]?[0-9][A-Z]{2} 
-    grep -E '[A-Z]{2}[0-9] ?[0-9][A-Z]{2}'
-        ```
+    	grep -E [A-Z]{2}[0-9][\ ]?[0-9][A-Z]{2} 
+    	grep -E '[A-Z]{2}[0-9] ?[0-9][A-Z]{2}'
 
 
 ​	find an example that would match the following but fail to match the above.
