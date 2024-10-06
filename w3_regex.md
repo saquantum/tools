@@ -126,7 +126,7 @@ dictionary file /usr/share/dict/words
         )$
 
 ## sed (Stream Editor)
-            sed [options] 's/SOURCE/DEST/'
+	sed [options] 's/SOURCE/DEST/'
 
 ​	options:
 
