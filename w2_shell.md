@@ -390,7 +390,7 @@ Building on what you saw in the videos and the previous exercises, write a shell
 
   - `uniq` reads standard input and writes to standard output, but skips repeated lines that immediately follow each other, for example if there are three lines A, A, B then it would only write A, B but if it gets A, B, A it would write all three. A common way to remove duplicate lines is `... | sort | uniq | ...`.
 
-  - `wc [-l]` stands for word count, but with `-l` it counts lines instead.
+  - `wc [-l]` stands for word count, but with `-l` it counts lines instead. `-w` count words.
 
   - `command | tee [-a] [file...]` . copy the output of command to file as well as standard output. `-a` append instead of overwriting.
 
