@@ -25,6 +25,8 @@ What do you do if it says it can't find a `.h` file, or can't link it to a libra
 CC?=gcc
 CFLAGS?=-Wall
 
+.DEFAULT:
+        echo "default"
 rm:
         rm -rf driver library.o
 driver: driver.c library.o
@@ -47,6 +49,8 @@ Patternrule:
 CC?=gcc
 CFLAGS?=-Wall
 
+.DEFAULT:
+        echo "default"
 %.o: %.c
         ${CC} ${CFLAGS} -c -$^ -o $@
 %: %.c %.o
