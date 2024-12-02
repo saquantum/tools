@@ -2,7 +2,7 @@
 
 ## grep (Global Regular Expression Print)
 
-dictionary file /usr/share/dict/words 
+dictionary file `/usr/share/dict/words`
 
     grep [-option] REGEX 
 ​        options:
@@ -19,7 +19,7 @@ dictionary file /usr/share/dict/words
 
 ​            ```-w``` match whole word
 
-​            ```-o``` only display the matched text and output each match in seperate lines
+​            ```-o``` only display the matched text and output each match in separate lines
 
 ​        REGEX:
 
@@ -30,6 +30,8 @@ dictionary file /usr/share/dict/words
 ​           ``` [^ ] ``` exclude
 
 ​            ```.``` any character
+
+​			`?` 0 or 1
 
 ​            ```*``` 0 or more
 
@@ -56,7 +58,7 @@ dictionary file /usr/share/dict/words
 ​	All words ending in j. 
 
 ```
-	grep 'j$'
+	grep j$
 ```
 
 ​	The number of words containing the letter Q, ignoring case.
@@ -92,13 +94,13 @@ dictionary file /usr/share/dict/words
 
 ​    Find all words that start with a P (whether capitalised or not), and contain at least four instances of the letter a. 
 
-    	grep '^[pP].*a.*a.*a.*a.*$' 
+    	grep ^[pP].*a.*a.*a.*a.*$
 
-​    Contrive a file such that grep returns multiple lines but grep -w returns only one line.
+​    Contrive a file such that `grep` returns multiple lines but `grep -w` returns only one line.
 
     	echo -e "cat\ncatalog\ncater\nscatter" | grep -w 'cat' 
 
-​    find a situation where grep -o PATTERN FILE | wc -l and grep -c PATTERN FILE produce different results
+​    find a situation where `grep -o PATTERNFILE | wc -l` and `grep -c PATTERNFILE` produce different results
 
     	echo -e "one cat two cat\none cat" | grep -c cat -> 2
     	echo -e "one cat two cat\none cat" | grep -o cat | wc -l -> 3
@@ -143,34 +145,34 @@ dictionary file /usr/share/dict/words
 ​	find all words ending in 'ay' and change 'day' into 'week'.
 
 ```
-	grep 'ay$' | sed 's/day/week/' 
+	grep ay$ | sed s/day/week/
 ```
 
 ​	In the same selection as above, replace all words that begin with 's' with the word 'sway'.
 
 ```
-	grep 'ay$' | sed 's/^s/sway/'
+	grep ay$ | sed s/^s/sway/
 ```
 
 ​	duplicate the match after a space, for any line containing 'day', so "saturday" becomes "saturday day".
 
 ```
-	grep 'ay$' | sed 's/day/& &/'
+	grep ay$ | sed 's/day/& &/'
 ```
 
 ​	any line ending in 'day' becomes a string "Xday or Xweek", where X is the other part of the word.
 
 ```
-	grep 'ay$' | sed 's/\(.*\)day$/\1day or \1week/'
+	grep ay$ | sed 's/\(.*\)day$/\1day or \1week/'
 ```
 
 ​	any word ending in either 'way' or 'day' to be flipped around and parenthesised, so 'someday' becomes 'day (some)' and 'speedway' becomes 'way (speed)'.
 
 ```
-	grep 'ay$' | sed 's/\(.*\)\([dw]ay\)/\2 (\1)/'
+	grep ay$ | sed 's/\(.*\)\([dw]ay\)/\2 (\1)/'
 ```
 
-​	difference between applying ```s/a/e/``` and ```s/a/e/g```.
+​	difference between applying ```s/a/e/``` and ```s/a/e/g```:
 
 ​		without g command only replace the first occurrence. ``` echo "banana" | sed 's/a/e/' ``` -> "benana".
 
