@@ -488,6 +488,7 @@ create table employee(
 	id int primary key,
 	name varchar(20),
 	dept_id int,
+	manager_id int,
 	constraint FK_department foreign key (dept_id) references department(id) on update cascade on delete set null
 );
 ```
@@ -534,9 +535,10 @@ create table user_edu(
 );
 ```
 
-### multiple tables - inner join
+### multiple tables - join
 
-When to use inner join: When you only need rows with matching data from both tables, or to combine related data spread across multiple tables.
+**inner join**
+When to use inner join: When you only need rows with matching data from both tables, or to combine related data spread across multiple tables. (intersection of two tables)
 
 implicit inner join
 
@@ -563,3 +565,39 @@ join project p
 on e.project_id = p.id
 where d.name = 'Engineering';
 ```
+
+**outer join**
+outer join gives all information on one table, combining with information from the other table.
+
+```
+select COLUMNS from TABLE1 left [outer] join TABLE2 on CONDITIONS;
+select COLUMNS from TABLE1 right [outer] join TABLE2 on CONDITIONS;
+```
+
+right join is the same as left join:
+
+```
+select COLUMNS from TABLE2 left [outer] join TABLE1 on CONDITIONS;
+```
+
+**self join**
+when you need to compare rows within the same table or establish relationships within the same dataset.
+
+```
+select A1.COLUMNS, A2.COLUMNS from TABLE [as] A1 [left/right/inner] join TABLE [as] A2 on CONDITIONS(A1.COLUMNS, A2.COLUMNS);
+```
+
+### multiple tables - union
+
+combine two queries results directly. the number of columns and corresponding types of two queries must match.
+
+```
+select ...
+union [all]
+select ...;
+```
+
+with `all` option: does not remove duplicate query results.
+
+### multiple tables - subquery
+
