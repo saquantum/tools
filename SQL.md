@@ -67,6 +67,15 @@ create table [if not exists] TABLENAME(
 )[comment COMMENT];
 ```
 
+create table with composite primary key:
+
+```
+create table TABLENAME(
+	...
+	primary key (COLUMN1, COLUMN2, ...)
+);
+```
+
 numeric types:
 
 ```
@@ -420,10 +429,10 @@ case [EXP] when [VALUE1] then [RET1] when [VALUE2] then [RET2] ... else [VALUE] 
 ```
 not null
 unique
-primary key
 default			if not passed when inserting, use default value.
 check
-foreign key		
+primary key		for composite primary key, must declare in a single line.
+foreign key		cannot declare along side with the column.
 ```
 
 ```
@@ -434,4 +443,23 @@ create table user(
 	status char(1) default '1',
 	gender char(1)
 );
+```
+
+create table with foreign key and compoiste primary key:
+
+```
+create table TABLENAME(
+	...
+	[FKNAME1] foreign key (COLUMN1) references PARENT_TABLE1(PARENT_COLUMN1),
+	[FKNAME2] foreign key (COLUMN2) references PARENT_TABLE2(PARENT_COLUMN2),
+	...
+	primary key (COLUMN1, COLUMN2, ...)
+);
+```
+
+add or delete foreign key constraint:
+
+```
+alter table TABLENAME add constraint FKNAME foreign key (COLUMN) references PARENT_TABLE(PARENT_COLUMN);
+alter table TABLENAME drop foreign key FKNAME;
 ```
