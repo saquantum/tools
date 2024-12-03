@@ -487,8 +487,8 @@ create table department(
 create table employee(
 	id int primary key,
 	name varchar(20),
-	depa_id int,
-	constraint FK_department foreign key (depa_id) references department(id) on update cascade on delete set null
+	dept_id int,
+	constraint FK_department foreign key (dept_id) references department(id) on update cascade on delete set null
 );
 ```
 
@@ -532,4 +532,34 @@ create table user_edu(
 	user_id int not null unique,
 	foreign key (user_id) references user_basic(id) on update cascade on delete cascade
 );
+```
+
+### multiple tables - inner join
+
+When to use inner join: When you only need rows with matching data from both tables, or to combine related data spread across multiple tables.
+
+implicit inner join
+
+```
+select COLUMNS from TABLE1, TABLE2 where CONDITIONS(TABLE1.COLUMN1,TABLE2.COLUMN2);
+select A1.COLUMNS, A2.COLUMNS from TABLE1 [as] A1, TABLE2 [as] A2 where CONDITIONS(A1.COLUMN1,A2.COLUMN2);
+```
+
+explicit inner join
+
+```
+select COLUMNS from TABLE1 [inner] join TABLE2 on CONDITIONS(TABLE1.COLUMN1,TABLE2.COLUMN2);
+select A1.COLUMNS, A2.COLUMNS from TABLE1 [as] A1 [inner] join TABLE2 [as] A2 on CONDITIONS(A1.COLUMN1,A2.COLUMN2);
+```
+
+```
+select e.name, d.name from department d join employee e on d.id=e.dept_id;
+
+select e.name as employee_name, d.name as department_name, p.name as project_name
+from employee e
+join department d
+on e.dept_id = d.id
+join project p
+on e.project_id = p.id
+where d.name = 'Engineering';
 ```
