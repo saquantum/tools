@@ -450,8 +450,8 @@ create table with foreign key and compoiste primary key:
 ```
 create table TABLENAME(
 	...
-	[FKNAME1] foreign key (COLUMN1) references PARENT_TABLE1(PARENT_COLUMN1) on update RULE1 on delete RULE2,
-	[FKNAME2] foreign key (COLUMN2) references PARENT_TABLE2(PARENT_COLUMN2) on update RULE1 on delete RULE2,
+	[constraint] [FKNAME1] foreign key (COLUMN1) references PARENT_TABLE1(PARENT_COLUMN1) on update RULE1 on delete RULE2,
+	[constraint] FKNAME2] foreign key (COLUMN2) references PARENT_TABLE2(PARENT_COLUMN2) on update RULE1 on delete RULE2,
 	...
 	primary key (COLUMN1, COLUMN2, ...)
 );
@@ -472,4 +472,43 @@ restrict
 cascade		transit the modification on parent table column to its linked column. 
 set null	only for delete. when deleted, its linked column is set to null.
 set default
+```
+
+### multiple tables - relations
+
+1. `1 to N` relationship: create foreign key at N side.
+
+```
+create table department(
+	id int primary key,
+	name varchar(20)
+);
+
+create table employee(
+	id int primary key,
+	name varchar(20),
+	depa_id int,
+	constraint FK_department foreign key (depa_id) references department(id) on update cascade on delete set null
+);
+```
+
+2. `N to N` relationship: create a new junction table combining both tables using foreign key.
+
+```
+create table student(
+	id int primary key,
+	name varchar(20)
+);
+
+create table course(
+	id int primary key,
+	name varchar(20)
+);
+
+create table student_course(
+	student int,
+	course int,
+	foreign key (student) references student(id) on update cascade on delete set null,
+	foreign key (course) references course(id) on update cascade on delete set null
+);
 ```
