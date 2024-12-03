@@ -60,10 +60,10 @@ create a new table
 
 ```
 create table [if not exists] TABLENAME(
-	COLUMN1 TYPE1 [comment COMMENT],
-	COLUMN2 TYPE2 [comment COMMENT],
+	COLUMN1 TYPE1 [CONSTRAINT] [comment COMMENT],
+	COLUMN2 TYPE2 [CONSTRAINT] [comment COMMENT],
 	...
-	COLUMN TYPE [comment COMMENT]
+	COLUMN TYPE [CONSTRAINT] [comment COMMENT]
 )[comment COMMENT];
 ```
 
@@ -418,4 +418,20 @@ case [EXP] when [VALUE1] then [RET1] when [VALUE2] then [RET2] ... else [VALUE] 
 ### constraint
 
 ```
+not null
+unique
+primary key
+default
+check
+foreign key
+```
+
+```
+create table user(
+	id int unsigned primary key auto_increment,
+	name varchar(10) not null unique,
+	age tinyint unsigned check (age between 0 and 120),
+	status char(1) default '1',
+	gender char(1)
+);
 ```
