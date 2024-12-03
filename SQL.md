@@ -386,9 +386,9 @@ string functions
 concat(STR1, STR2, ...)		concatenate strings into one string
 lower(STR)
 upper(STR)
-lpad(STR, N, PAD)		pad PAD to the left of STR repeatedly until the length of STR reach N
-rpad(STR, N, PAD)		pad PAD to the right of STR repeatedly until the length of STR reach N
-trim(STR)			delete leftmost and rightmost spaces 
+lpad(STR, N, PAD)			pad PAD to the left of STR repeatedly until the length of STR reach N
+rpad(STR, N, PAD)			pad PAD to the right of STR repeatedly until the length of STR reach N
+trim(STR)					delete leftmost and rightmost spaces 
 substring(STR, START, END)	START starts at 1. includes both START and END index.
 ```
 
@@ -418,7 +418,7 @@ datediff(DATE1, DATE2)
 process functions
 
 ```
-if(BOOL, T, F)											if BOOL is true then return T.
+if(BOOL, T, F)												if BOOL is true then return T.
 ifnull(VALUE1, VALUE2)										if VALUE1 is not null the return VALUE1.
 case when [BOOL1] then [VALUE1] when [BOOL2] then [VALUE2] ... else [VALUE] end			return VALUE1 when BOOl is true.
 case [EXP] when [VALUE1] then [RET1] when [VALUE2] then [RET2] ... else [VALUE] end		return RET1 when EXP==VALUE1.
@@ -445,7 +445,7 @@ create table user(
 );
 ```
 
-create table with foreign key and compoiste primary key:
+create table with foreign key and composite primary key:
 
 ```
 create table TABLENAME(
@@ -663,3 +663,41 @@ join employee e
 on e.dept_id = large_departments.dept_id
 where e.salary > company_avg.company_avg_salary;
 ```
+
+### transaction rollback
+
+```
+start transaction / begin
+commit;
+rollback;
+```
+
+concurrent transaction problems:
+
+1. dirty read: a transaction reads uncommitted data modified by another transaction.
+2. non-repeatable read: read the same data twice but found different value.
+3. phantom read: a transaction fails to find a data row but subsequently found it because another transaction has inserted new data.
+
+solutions: four isolation levels:
+
+| isolation level  | dirty read | non-repeatable read | phantom read |
+| :--------------- | :--------: | :-----------------: | :----------: |
+| read uncommitted |     √      |          √          |      √       |
+| read committed   |     ×      |          √          |      √       |
+| repeatable read  |     ×      |          ×          |      ×       |
+| serializable     |     ×      |          ×          |      ×       |
+
+query isolation level
+
+```
+select @@transaction_isolation
+```
+
+set isolation level
+
+```
+set [session|global] transaction isolation level {read uncommitted | read committed | repreatable read | serializable}
+```
+
+
+
