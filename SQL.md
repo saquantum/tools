@@ -276,7 +276,7 @@ select avg(age) from newtable;
 select sum(age) from newtable where gender='F';
 ```
 
-**grouping**. after grouping, new queries are usually aggregate functions or columns. use having to filter output after grouping.
+**grouping**. after grouping, new queries are usually aggregate functions or columns. use having to filter output after grouping. aggregate functions cannot be used with `where` ,but `having`.
 
 ```
 select COLUMNS from TABLENAME [where CONDITION] group by COLUMN [having CONDITION]
