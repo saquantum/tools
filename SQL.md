@@ -67,7 +67,7 @@ create table [if not exists] TABLENAME(
 )[comment COMMENT];
 ```
 
-digit types:
+numeric types:
 
 ```
 tinyint
@@ -369,7 +369,29 @@ revoke privileges
 revoke PRIVILEGES on DBNAME.TABLENAME from 'USERNAME'@'HOSTNAME';
 ```
 
+### functions
 
+string functions
+
+```
+concat(STR1, STR2, ...)		concatenate strings into one string
+lower(STR)
+upper(STR)
+lpad(STR, N, PAD)		pad PAD to the left of STR repeatedly until the length of STR reach N
+rpad(STR, N, PAD)		pad PAD to the right of STR repeatedly until the length of STR reach N
+trim(STR)			delete leftmost and rightmost spaces 
+substring(STR, START, END)	START starts at 1. includes both START and END index.
+```
+
+numerical functions
+
+```
+ceil(X)
+floor(X)
+mod(X,Y)	X%Y
+rand()		between 0 and 1
+round(X,Y)	round X and preserve Y digits
+```
 
 
 
