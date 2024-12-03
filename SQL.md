@@ -421,9 +421,9 @@ case [EXP] when [VALUE1] then [RET1] when [VALUE2] then [RET2] ... else [VALUE] 
 not null
 unique
 primary key
-default
+default			if not passed when inserting, use default value.
 check
-foreign key
+foreign key		
 ```
 
 ```
