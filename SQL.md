@@ -386,9 +386,9 @@ string functions
 concat(STR1, STR2, ...)		concatenate strings into one string
 lower(STR)
 upper(STR)
-lpad(STR, N, PAD)		pad PAD to the left of STR repeatedly until the length of STR reach N
-rpad(STR, N, PAD)		pad PAD to the right of STR repeatedly until the length of STR reach N
-trim(STR)			delete leftmost and rightmost spaces 
+lpad(STR, N, PAD)			pad PAD to the left of STR repeatedly until the length of STR reach N
+rpad(STR, N, PAD)			pad PAD to the right of STR repeatedly until the length of STR reach N
+trim(STR)					delete leftmost and rightmost spaces 
 substring(STR, START, END)	START starts at 1. includes both START and END index.
 ```
 
@@ -418,10 +418,10 @@ datediff(DATE1, DATE2)
 process functions
 
 ```
-if(BOOL, T, F)										if BOOL is true then return T.
-ifnull(VALUE1, VALUE2)									if VALUE1 is not null the return VALUE1.
-case when [BOOL1] then [VALUE1] when [BOOL2] then [VALUE2] ... else [VALUE] end		return VALUE1 when BOOl is true.
-case [EXP] when [VALUE1] then [RET1] when [VALUE2] then [RET2] ... else [VALUE] end	return RET1 when EXP==VALUE1.
+if(BOOL, T, F)																			if BOOL is true then return T.
+ifnull(VALUE1, VALUE2)																	if VALUE1 is not null the return VALUE1.
+case when [BOOL1] then [VALUE1] when [BOOL2] then [VALUE2] ... else [VALUE] end			return VALUE1 when BOOl is true.
+case [EXP] when [VALUE1] then [RET1] when [VALUE2] then [RET2] ... else [VALUE] end		return RET1 when EXP==VALUE1.
 ```
 
 ### constraint
