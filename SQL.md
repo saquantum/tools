@@ -602,7 +602,7 @@ with `all` option: does not remove duplicate query results.
 
 ### multiple tables - subquery
 
-nest result of one query into another query. often used in `where, select, from` clauses.
+nest result of one query into another query. often used in `where`, `select` and `from` clauses.
 its outermost can be any of `select`, `insert`, `update` or `delete`.
 
 **scalar subquery**: the result of subquery is 1x1 scalar value. useful when you need to compare a value in the main query with a single calculated or fetched value from a subquery.
@@ -637,4 +637,29 @@ useful keywords:
 
 ```
 select * from employee where (salary, manager_id) = (select salary, manager_id from employee where name = 'XYZ');
+```
+
+**derived table subquery**
+
+use the derived table as temporary table.
+
+```
+select * from employee where (job, salary) in (select job, salary from employee where name in ('ABC', 'XYZ'));
+
+select * from (select * from employee where entrydate > '2006-01-01') as tmp left join department as d on tmp.dept_id = d.id;
+
+select e.name, e.salary, e.dept_id
+from (
+    select dept_id, count(*) as emp_count
+    from employee
+    group by dept_id
+    having count(*) > 5
+) as large_departments
+join (
+    select avg(salary) as company_avg_salary
+    from employee
+) as company_avg
+join employee e
+on e.dept_id = large_departments.dept_id
+where e.salary > company_avg.company_avg_salary;
 ```
