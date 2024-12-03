@@ -386,9 +386,9 @@ string functions
 concat(STR1, STR2, ...)		concatenate strings into one string
 lower(STR)
 upper(STR)
-lpad(STR, N, PAD)			pad PAD to the left of STR repeatedly until the length of STR reach N
-rpad(STR, N, PAD)			pad PAD to the right of STR repeatedly until the length of STR reach N
-trim(STR)					delete leftmost and rightmost spaces 
+lpad(STR, N, PAD)		pad PAD to the left of STR repeatedly until the length of STR reach N
+rpad(STR, N, PAD)		pad PAD to the right of STR repeatedly until the length of STR reach N
+trim(STR)			delete leftmost and rightmost spaces 
 substring(STR, START, END)	START starts at 1. includes both START and END index.
 ```
 
@@ -418,8 +418,8 @@ datediff(DATE1, DATE2)
 process functions
 
 ```
-if(BOOL, T, F)																			if BOOL is true then return T.
-ifnull(VALUE1, VALUE2)																	if VALUE1 is not null the return VALUE1.
+if(BOOL, T, F)											if BOOL is true then return T.
+ifnull(VALUE1, VALUE2)										if VALUE1 is not null the return VALUE1.
 case when [BOOL1] then [VALUE1] when [BOOL2] then [VALUE2] ... else [VALUE] end			return VALUE1 when BOOl is true.
 case [EXP] when [VALUE1] then [RET1] when [VALUE2] then [RET2] ... else [VALUE] end		return RET1 when EXP==VALUE1.
 ```
@@ -489,6 +489,7 @@ create table employee(
 	name varchar(20),
 	dept_id int,
 	manager_id int,
+	salary int,
 	constraint FK_department foreign key (dept_id) references department(id) on update cascade on delete set null
 );
 ```
@@ -601,4 +602,36 @@ with `all` option: does not remove duplicate query results.
 
 ### multiple tables - subquery
 
+**scalar subquery**: the result of subquery is 1x1 scalar value. useful when you need to compare a value in the main query with a single calculated or fetched value from a subquery.
 
+```
+select * from employee where dept_id = (select id from department where name = 'Marketing');
+```
+
+**column subquery**
+
+keywords:
+
+```
+in
+not in
+any
+some
+all
+```
+
+```
+select * from employee where salary > all (select salary from employee where dept_id = (select id from department where name = 'Marketing'));
+```
+
+**row subquery**
+
+useful keywords:
+
+```
+=, !=, in, not in
+```
+
+```
+select * from employee where (salary, manager_id) = (select salary, manager_id from employee where name = 'XYZ');
+```
