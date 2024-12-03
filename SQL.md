@@ -602,6 +602,9 @@ with `all` option: does not remove duplicate query results.
 
 ### multiple tables - subquery
 
+nest result of one query into another query. often used in `where, select, from` clauses.
+its outermost can be any of `select`, `insert`, `update` or `delete`.
+
 **scalar subquery**: the result of subquery is 1x1 scalar value. useful when you need to compare a value in the main query with a single calculated or fetched value from a subquery.
 
 ```
