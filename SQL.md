@@ -474,9 +474,9 @@ set null	only for delete. when deleted, its linked column is set to null.
 set default
 ```
 
-### multiple tables - relations
+### multiple tables - relationship
 
-1. `1 to N` relationship: create foreign key at N side.
+1. `1 to N` relationship: create a foreign key at N side.
 
 ```
 create table department(
@@ -510,5 +510,26 @@ create table student_course(
 	course int,
 	foreign key (student) references student(id) on update cascade on delete set null,
 	foreign key (course) references course(id) on update cascade on delete set null
+);
+```
+
+3. `1 to 1` relationship: create a unique foreign key at either side, and connect it with the other side.
+
+```
+create table user_basic(
+	id int primary key,
+	name varchar(20),
+	age int,
+	gender char(1)
+);
+
+create table user_edu(
+	id int primary key,
+	primary_school varchar(50),
+	middle_school varchar(50),
+	high_school varchar(50),
+	university varchar(50),
+	user_id int not null unique,
+	foreign key (user_id) references user_basic(id) on update cascade on delete cascade
 );
 ```
