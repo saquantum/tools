@@ -450,8 +450,8 @@ create table with foreign key and compoiste primary key:
 ```
 create table TABLENAME(
 	...
-	[FKNAME1] foreign key (COLUMN1) references PARENT_TABLE1(PARENT_COLUMN1),
-	[FKNAME2] foreign key (COLUMN2) references PARENT_TABLE2(PARENT_COLUMN2),
+	[FKNAME1] foreign key (COLUMN1) references PARENT_TABLE1(PARENT_COLUMN1) on update RULE1 on delete RULE2,
+	[FKNAME2] foreign key (COLUMN2) references PARENT_TABLE2(PARENT_COLUMN2) on update RULE1 on delete RULE2,
 	...
 	primary key (COLUMN1, COLUMN2, ...)
 );
@@ -460,6 +460,16 @@ create table TABLENAME(
 add or delete foreign key constraint:
 
 ```
-alter table TABLENAME add constraint FKNAME foreign key (COLUMN) references PARENT_TABLE(PARENT_COLUMN);
+alter table TABLENAME add constraint FKNAME foreign key (COLUMN) references PARENT_TABLE(PARENT_COLUMN) on update RULE1 on delete RULE2;
 alter table TABLENAME drop foreign key FKNAME;
+```
+
+update and delete rules:
+
+```
+no action
+restrict
+cascade		transit the modification on parent table column to its linked column. 
+set null	only for delete. when deleted, its linked column is set to null.
+set default
 ```
