@@ -388,10 +388,22 @@ numerical functions
 ```
 ceil(X)
 floor(X)
-mod(X,Y)	X%Y
-rand()		between 0 and 1
-round(X,Y)	round X and preserve Y digits
+mod(X,Y)			X%Y
+rand()				between 0 and 1
+round(X,Y)			round X and preserve Y digits
 ```
 
+date functions
+
+```
+curdata()			returns YYYY-MM-DD
+curtime()			returns HH:MM:SS
+now()				returns both
+year(DATE)
+month(DATE)
+day(DATE)
+date_add(DATE, interval N TYPE)	type includes day, month and year.	
+datediff(DATE1, DATE2)		
+```
 
 
