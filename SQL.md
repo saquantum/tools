@@ -406,4 +406,11 @@ date_add(DATE, interval N TYPE)	type includes day, month and year.
 datediff(DATE1, DATE2)		
 ```
 
+process functions
 
+```
+if(BOOL, T, F)										if BOOL is true then return T.
+ifnull(VALUE1, VALUE2)									if VALUE1 is not null the return VALUE1.
+case when [BOOL1] then [VALUE1] when [BOOL2] then [VALUE2] ... else [VALUE] end		return VALUE1 when BOOl is true.
+case [EXP] when [VALUE1] then [RET1] when [VALUE2] then [RET2] ... else [VALUE] end	return RET1 when EXP==VALUE1.
+```
