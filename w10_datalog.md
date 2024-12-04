@@ -74,7 +74,7 @@ In your system you should have the following predicates:
 
 - You can read a file if `othersCanRead(F)` is true.
 
-  ```
+```
 file(doc1). file(doc2). file(doc3).
 principal(a). principal(b). principal(c).
 owner(doc1, a). owner(doc2, b). owner(doc3, c).
@@ -83,7 +83,7 @@ owner(doc1, a). owner(doc2, b). owner(doc3, c).
 canRead(P, F) :- file(F), principal(P), owner(F, P).
 canRead(P, F) :- file(F), principal(P), othersCanRead(F).
 canRead(P, F) :- file(F), principal(P), owner(F, P0), saysCanRead(P0,P,F).
-  ```
+```
 
 ## Delegated access control
 
@@ -97,7 +97,7 @@ canRead(P, F) :- file(F), principal(P), owner(F, P0), saysCanRead(P0,P,F).
 
 - `holds(P,R)` states that a principal `P` holds a role `R`. Update your `saysCanRead` rule to account for roles.
 
-  ```
+```
 delegatesTo(b, c).
 delegatesTo(c, e).
 holds(a, user).
@@ -108,7 +108,7 @@ saysCanRead(P1, P2, F) :- saysCanRead(P1, P3, F), saysCanRead(P3, P2, F).
 saysCanRead(P1, P2, F) :- owner(F, P1), holds(P1, R), holds(P2, R), P1!=P2, principal(P1), principal(P2), file(F).
 saysCanRead(P1, P2, F) :- owner(F, P1), delegatesTo(P1, P2), P1!=P2, principal(P1), principal(P2), file(F).
 saysCanRead(P1, P2, F) :- owner(F, P0), delegatesTo(P0, P1), delegatesTo(P1, P2), P0!=P1, P1!=P2, principal(P0), principal(P1), principal(P2), file(F).
-  ```
+```
 
 ## Mandatory access control
 
@@ -130,7 +130,7 @@ The *read down, write up* access control model is used to protect access to data
 
 - You can write to a file if you have an appropriate or lesser clearance than the file (so that you can tell people with more clearance than you things without informing your peers).
 
-  ```
+```
 unclassified(doc1).
 secret(doc2).
 topsecret(doc3).
@@ -151,7 +151,7 @@ canWrite(P,F) :- file(F), principal(P), topsecret(F).
 canWrite(P,F) :- file(F), principal(P), clearance(P, secret), secret(F).
 canWrite(P,F) :- file(F), principal(P), clearance(P, unclassified), secret(F).
 canWrite(P,F) :- file(F), principal(P), clearance(P, unclassified), unclassified(F).
-  ```
+```
 
 ### Write down, read up (*Biba*)
 
