@@ -75,14 +75,14 @@ In your system you should have the following predicates:
 - You can read a file if `othersCanRead(F)` is true.
 
   ```
-  file(doc1). file(doc2). file(doc3).
-  principal(A). principal(B). principal(C).
-  owner(doc1, A). owner(doc2, B). owner(doc3, C). 
-  othersCanRead(doc1).
-  
-  canRead(P, F) :- file(F), principal(P), owner(F, P).
-  canRead(P, F) :- file(F), principal(P), othersCanRead(F).
-  canRead(P, F) :- file(F), principal(P), owner(F, P0), saysCanRead(P0,P,F).
+file(doc1). file(doc2). file(doc3).
+principal(a). principal(b). principal(c).
+owner(doc1, a). owner(doc2, b). owner(doc3, c).
+%othersCanRead(doc1).
+
+canRead(P, F) :- file(F), principal(P), owner(F, P).
+canRead(P, F) :- file(F), principal(P), othersCanRead(F).
+canRead(P, F) :- file(F), principal(P), owner(F, P0), saysCanRead(P0,P,F).
   ```
 
 ## Delegated access control
@@ -98,15 +98,16 @@ In your system you should have the following predicates:
 - `holds(P,R)` states that a principal `P` holds a role `R`. Update your `saysCanRead` rule to account for roles.
 
   ```
-  delegatesTo(B, C).
-  holds(A, user). holds(B, user). holds(C, user). 
-  holds(A, auditor). holds(B, auditor). holds(C, auditor). 
-  principal(D). principal(E).
-  holds(D, auditor). holds(E, common).
-  
-  saysCanRead(P1, P2, F) :- saysCanRead(P1, P3, F), saysCanRead(P3, P2, F).
-  saysCanRead(P1, P2, F) :- owner(F, P1), holds(P1, R), holds(P2, R), P1!=P2, principal(P1). principal(P2), file(F).
-  saysCanRead(P1, P2, F) :- owner(F, P1), delegatesTo(P1, P2), P1!=P2, principal(P1). principal(P2), file(F).
+delegatesTo(b, c).
+delegatesTo(c, e).
+holds(a, user).
+principal(d). principal(e).
+holds(d, user). holds(e, common).
+
+saysCanRead(P1, P2, F) :- saysCanRead(P1, P3, F), saysCanRead(P3, P2, F).
+saysCanRead(P1, P2, F) :- owner(F, P1), holds(P1, R), holds(P2, R), P1!=P2, principal(P1), principal(P2), file(F).
+saysCanRead(P1, P2, F) :- owner(F, P1), delegatesTo(P1, P2), P1!=P2, principal(P1), principal(P2), file(F).
+saysCanRead(P1, P2, F) :- owner(F, P0), delegatesTo(P0, P1), delegatesTo(P1, P2), P0!=P1, P1!=P2, principal(P0), principal(P1), principal(P2), file(F).
   ```
 
 ## Mandatory access control
@@ -130,26 +131,26 @@ The *read down, write up* access control model is used to protect access to data
 - You can write to a file if you have an appropriate or lesser clearance than the file (so that you can tell people with more clearance than you things without informing your peers).
 
   ```
-  unclassified(doc1).
-  secret(doc2).
-  topsecret(doc3).
-  file(doc4).
-  secret(doc4).
-  clearance(A,unclassified).
-  clearance(B,secret).
-  clearance(C,topsecret).
-  clearance(D,secret).
-  clearance(E,unclassified).
-  
-  canRead(P,F) :- file(F), principal(P), unclassified(F).
-  canRead(P,F) :- file(F), principal(P), clearance(P, secret), secret(F).
-  canRead(P,F) :- file(F), principal(P), clearance(P, topsecret), secret(F).
-  canRead(P,F) :- file(F), principal(P), clearance(P, topsecret), topsecret(F).
-  
-  canWrite(P,F) :- file(F), principal(P), topsecret(F).
-  canWrite(P,F) :- file(F), principal(P), clearance(P, secret), secret(F).
-  canWrite(P,F) :- file(F), principal(P), clearance(P, unclassified), secret(F).
-  canWrite(P,F) :- file(F), principal(P), clearance(P, unclassified), unclassified(F).
+unclassified(doc1).
+secret(doc2).
+topsecret(doc3).
+file(doc4).
+secret(doc4).
+clearance(a,unclassified).
+clearance(b,secret).
+clearance(c,topsecret).
+clearance(d,secret).
+clearance(e,unclassified).
+
+canRead(P,F) :- file(F), principal(P), unclassified(F).
+canRead(P,F) :- file(F), principal(P), clearance(P, secret), secret(F).
+canRead(P,F) :- file(F), principal(P), clearance(P, topsecret), secret(F).
+canRead(P,F) :- file(F), principal(P), clearance(P, topsecret), topsecret(F).
+
+canWrite(P,F) :- file(F), principal(P), topsecret(F).
+canWrite(P,F) :- file(F), principal(P), clearance(P, secret), secret(F).
+canWrite(P,F) :- file(F), principal(P), clearance(P, unclassified), secret(F).
+canWrite(P,F) :- file(F), principal(P), clearance(P, unclassified), unclassified(F).
   ```
 
 ### Write down, read up (*Biba*)
