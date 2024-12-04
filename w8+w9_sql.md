@@ -1,3 +1,7 @@
+# Entity-Relationship Diagram
+
+![crow's foot notation](https://www.softwareideas.net/i/DirectImage/1859/crow-s-foot-notation)
+
 # SQLite Query
 
 ### Elections
