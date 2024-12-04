@@ -2,9 +2,9 @@
 
 ​	Secure shell (SSH) is a protocol to allow you to remotely log in to another computer.
 
-​	`	ssh` is the client, which you run on your machine to connect to another machine.
+​	`ssh` is the client, which you run on your machine to connect to another machine.
 
-​	`	sshd` is the server, or *daemon* in UNIX-speak. It runs in the background on the machine you want to connect to, and needs to be installed by the system administrator. Note: SSH uses TCP port 22 by default.
+​	`sshd` is the server, or *daemon* in UNIX-speak. It runs in the background on the machine you want to connect to, and needs to be installed by the system administrator. Note: SSH uses TCP port 22 by default.
 
 #### Check your client
 
