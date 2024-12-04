@@ -151,7 +151,7 @@ Linux (and other POSIX-like operating systems) work with a single file hierarchy
 
 `/bin` stands for binaries, that is programs that you can run. Have a look with `ls /bin`: there will be a lot of commands in here, including ls itself. Indeed you can find out where a program is with `which`, so `which ls` will show you `/usr/bin/ls` for example.
 
-`/usr` is a historical accident and a bit of a mess. A short history is on [this stackexchange question](https://askubuntu.com/questions/130186/what-is-the-rationale-for-the-usr-directory) but essentially, in the earliest days,
+`/usr` is a historical accident and a bit of a mess. in the earliest days,
 
 - `/bin` was only for binaries needed to start the system - or at least the most important binaries that needed to live on the faster of several disk drives, like your shell.
 - `/usr/bin` was where most binaries lived which were available globally, for example across all machines in an organisation.
