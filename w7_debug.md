@@ -183,24 +183,11 @@ These are the most common instructions in x86-64. They perform an operation on t
 
 ```
 $ strings -d ./crackme-1
-/lib64/ld-linux-x86-64.so.2
-libc.so.6
-puts
-stdin
-getline
+...
 strcmp
-__libc_start_main
-free
-GLIBC_2.2.5
-_ITM_deregisterTMCloneTable
-__gmon_start__
-_ITM_registerTMCloneTable
-[]A\A]A^A_
+...
 Beetlejuice
-What is the password?
-You win!
-Nope
-;*3$"
+...
 
 $ ltrace ./crackme-1
 puts("What is the password?"What is the password?
@@ -218,15 +205,8 @@ free(0x159a6b0)                                                           = <voi
 
 ```
 $ gdb ./crackme-2
-Reading symbols from ./crackme-2...done.
 (gdb) b main
-Breakpoint 1 at 0x40065e: file crackme-2.c, line 7.
 (gdb) run <<< "abc"
-Starting program: /home/kj24716/crackmes/crackme-2 <<< "abc"
-
-Breakpoint 1, main () at crackme-2.c:7
-7         char *input = NULL;
-Missing separate debuginfos, use: yum debuginfo-install glibc-2.28-251.el8_10.5.x86_64
 (gdb) disas
 Dump of assembler code for function main:
    0x0000000000400656 <+0>:     push   %rbp
@@ -346,17 +326,8 @@ $ objdump -d ./crackme-2 | grep -w cmp
 
 ```
 $ gdb ./crackme-3
-Reading symbols from ./crackme-3...done.
 (gdb) b main
-Breakpoint 1 at 0x4006fe: file crackme-3.c, line 7.
-(gdb) disas
-No frame selected.
 (gdb) run <<< "abc"
-Starting program: /home/kj24716/crackmes/crackme-3 <<< "abc"
-
-Breakpoint 1, main () at crackme-3.c:7
-7         char *input = NULL;
-Missing separate debuginfos, use: yum debuginfo-install glibc-2.28-251.el8_10.5.x86_64
 (gdb) disas
 Dump of assembler code for function main:
    0x00000000004006f6 <+0>:     push   %rbp
@@ -457,15 +428,8 @@ free(0xe7a6b0)                                                            = <voi
 +++ exited (status 1) +++
 
 $ gdb ./crackme-4
-Reading symbols from ./crackme-4...done.
 (gdb) b main
-Breakpoint 1 at 0x40073e: file crackme-4.c, line 7.
 (gdb) run <<< "password"
-Starting program: /home/kj24716/crackmes/crackme-4 <<< "password"
-
-Breakpoint 1, main () at crackme-4.c:7
-7         char *input = NULL;
-Missing separate debuginfos, use: yum debuginfo-install glibc-2.28-251.el8_10.5.x86_64
 (gdb) disas
 Dump of assembler code for function main:
    0x0000000000400736 <+0>:     push   %rbp
@@ -520,15 +484,7 @@ End of assembler dump.
 
 ```
 (gdb) b *0x4007ae
-Breakpoint 2 at 0x4007ae: file crackme-4.c, line 23.
 (gdb) run <<< "a"
-The program being debugged has been started already.
-Start it from the beginning? (y or n) y
-Starting program: /home/kj24716/crackmes/crackme-4 <<< "a"
-What is the password?
-
-Breakpoint 2, main () at crackme-4.c:23
-23        if (atoi(input) == result) {
 (gdb) info registers rbp
 rbp            0x7fffffffd3b0      0x7fffffffd3b0
 (gdb) x/wx 0x7fffffffd3ac
@@ -543,30 +499,15 @@ rbp            0x7fffffffd3b0      0x7fffffffd3b0
 
 ```
 $ strings -d ./crackme-5
-/lib64/ld-linux-x86-64.so.2
-libc.so.6
+...
 strncmp
 puts
 tolower
 getchar
 toupper
-stderr
-fprintf
-__libc_start_main
-GLIBC_2.2.5
-_ITM_deregisterTMCloneTable
-__gmon_start__
-_ITM_registerTMCloneTable
-gfff
-gfff
-gfff
-[]A\A]A^A_
-What is the password?
+...
 B3t3Lg3uS3
-You win!
-Nope
-[DEBUG] m[%d]='%c' (0x%02x %d)
-;*3$"
+...
 
 $ ltrace ./crackme-5
 puts("What is the password?"What is the password?
@@ -580,37 +521,10 @@ puts("Nope"Nope
 
 $ strace ./crackme-5
 execve("./crackme-5", ["./crackme-5"], 0x7fffc29fb9a0 /* 49 vars */) = 0
-brk(NULL)                               = 0x2550000
-arch_prctl(0x3001 /* ARCH_??? */, 0x7ffdac0b11e0) = -1 EINVAL (Invalid argument)
-access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
-openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
-fstat(3, {st_mode=S_IFREG|0644, st_size=126055, ...}) = 0
-mmap(NULL, 126055, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f0b0f6dd000
-close(3)                                = 0
-openat(AT_FDCWD, "/lib64/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
-read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\300\250\3\0\0\0\0\0"..., 832) = 832
-fstat(3, {st_mode=S_IFREG|0755, st_size=2164640, ...}) = 0
-mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f0b0f6db000
-lseek(3, 808, SEEK_SET)                 = 808
-read(3, "\4\0\0\0\20\0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0", 32) = 32
-mmap(NULL, 4020448, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f0b0f0f7000
-mprotect(0x7f0b0f2c4000, 2093056, PROT_NONE) = 0
-mmap(0x7f0b0f4c3000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1cc000) = 0x7f0b0f4c3000
-mmap(0x7f0b0f4c9000, 14560, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f0b0f4c9000
-close(3)                                = 0
-arch_prctl(ARCH_SET_FS, 0x7f0b0f6dc500) = 0
-mprotect(0x7f0b0f4c3000, 16384, PROT_READ) = 0
-mprotect(0x601000, 4096, PROT_READ)     = 0
-mprotect(0x7f0b0f6fc000, 4096, PROT_READ) = 0
-munmap(0x7f0b0f6dd000, 126055)          = 0
-fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x2), ...}) = 0
-getrandom("\x22\x2d\x25\x08\x52\x29\x0a\xf5", 8, GRND_NONBLOCK) = 8
-brk(NULL)                               = 0x2550000
-brk(0x2571000)                          = 0x2571000
-brk(NULL)                               = 0x2571000
+...
 write(1, "What is the password?\n", 22What is the password?
 ) = 22
-fstat(0, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x2), ...}) = 0
+...
 read(0,
 "\n", 1024)                     = 1
 write(1, "Nope\n", 5Nope
@@ -619,15 +533,8 @@ exit_group(0)                           = ?
 +++ exited with 0 +++
 
 $ gdb ./crackme-5
-Reading symbols from ./crackme-5...done.
 (gdb) b main
-Breakpoint 1 at 0x40074e: file crackme-5.c, line 17.
 (gdb) run <<< ""
-Starting program: /home/kj24716/crackmes/crackme-5 <<< ""
-
-Breakpoint 1, main () at crackme-5.c:17
-17        printf("What is the password?\n");
-Missing separate debuginfos, use: yum debuginfo-install glibc-2.28-251.el8_10.5.x86_64
 (gdb) disas
 Dump of assembler code for function main:
    0x0000000000400746 <+0>:     push   %rbp
