@@ -26,8 +26,7 @@ hint:   git branch -m <name>
 Initialized empty Git repository in /home/kj24716/gitproject/.git/
 $ git log
 fatal: your current branch 'master' does not have any commits yet
-$ echo -e "#include<stdio.h>\nint main(){\nprintf(\"Hi\");\nreturn 0;\n}\n" > t
-est.c
+$ echo -e "#include<stdio.h>\nint main(){\nprintf(\"Hi\");\nreturn 0;\n}\n" > test.c
 $ git status
 On branch master
 
@@ -126,12 +125,6 @@ Author: saquantum <kj24716@bris.ac.uk>
 Date:   Sun Dec 1 02:07:02 2024 +0000
 
     ignore file
-
-commit 4e878843247de9b4ced79406b1ea97c5f19b7564
-Author: saquantum <kj24716@bris.ac.uk>
-Date:   Sun Dec 1 02:02:33 2024 +0000
-
-    first file
 ```
 
 Sometimes you want to go back and look at another commit, or undo a commit that broke something—this is when you want a checkout.
@@ -194,17 +187,6 @@ If you actually want to undo a commit, then you have two options:
   
       Hi -> Hello
   
-  commit bc20bbf7ddd24faf04aeb44e34b22bdd2f9af259
-  Author: saquantum <kj24716@bris.ac.uk>
-  Date:   Sun Dec 1 02:07:02 2024 +0000
-  
-      ignore file
-  
-  commit 4e878843247de9b4ced79406b1ea97c5f19b7564
-  Author: saquantum <kj24716@bris.ac.uk>
-  Date:   Sun Dec 1 02:02:33 2024 +0000
-  
-      first file
   $ cat test.c
   #include<stdio.h>
   int main(){
@@ -250,11 +232,6 @@ If you actually want to undo a commit, then you have two options:
   
       ignore file
   
-  commit 4e878843247de9b4ced79406b1ea97c5f19b7564
-  Author: saquantum <kj24716@bris.ac.uk>
-  Date:   Sun Dec 1 02:02:33 2024 +0000
-  
-      first file
   ```
 
 # Git forges
