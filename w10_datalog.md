@@ -3,13 +3,6 @@
 # The Addams Family
 
 
-
-[![addams.png](https://github.com/cs-uob/software-tools/raw/main/10-sql/lab/addams.png)](https://github.com/cs-uob/software-tools/blob/main/10-sql/lab/addams.png)
-
-The Addams Family tree is shown above. Your task is to encode the family tree in Datalog. To do this you’ll need to describe the relationships in Horn clauses.
-
-Firstly you’ll need to create the knowledge base in Horn-clauses. Start by defining a relationship between parent and children. For example, `parent(pugsley,gomez)` states that Pugsley’s parent is Gomez.
-
 **Task 1.** Capture the Addams Family tree using Horn clauses. To test run the query `parent(X,sharron)` to see if *Sharron* is anyone’s parent. The only match should be *Debbie*.
 
 **Task 2.** A sibling is someone who shares a parent with you. Define a rule `sibling(X,Y)` that captures this. Check that Gomez’s sibling is Fester.
@@ -24,30 +17,9 @@ Firstly you’ll need to create the knowledge base in Horn-clauses. Start by def
 
 ```
 % Parent relationships
-parent(debbie, sharron).
-parent(debbie, dave).
-parent(fester, eudora).
-parent(fester, father).
-parent(gomez, eudora).
-parent(gomez, father).
-parent(morticia, hester).
-parent(morticia, father_frump).
-parent(ophella, hester).
-parent(ophella, father_frump).
-parent(pugsley, morticia).
-parent(pugsley, gomez).
-parent(wednesday, morticia).
-parent(wednesday, gomez).
-parent(pubert, morticia).
-parent(pubert, gomez).
-parent(father_frump, mooma).
-parent(father_frump, slurp).
-parent(sloom, mooma).
-parent(sloom, slurp).
-parent(jester, mooma).
-parent(jester, slurp).
-parent(eudora, mooma).
-parent(eudora, slurp).
+parent(debbie, sharron). parent(debbie, dave). parent(fester, eudora).
+parent(fester, father). parent(gomez, eudora). parent(gomez, father).
+...
 
 % rules
 grandparent(X,Z) :- parent(X,Y), parent(Y,Z).
@@ -152,11 +124,3 @@ canWrite(P,F) :- file(F), principal(P), clearance(P, secret), secret(F).
 canWrite(P,F) :- file(F), principal(P), clearance(P, unclassified), secret(F).
 canWrite(P,F) :- file(F), principal(P), clearance(P, unclassified), unclassified(F).
 ```
-
-### Write down, read up (*Biba*)
-
-This one is a bit more surprising but is used when you want to protect the integrity of data.
-
-- You can write to a file if you have a strictly higher clearance than the file. The idea is that you should be able to send orders to people with less clearance than you.
-- You can read a file only with more clearance than you have. The idea is that you shouldn’t be influenced by ideas from outside sources.
-
