@@ -10,11 +10,7 @@ Try the following:
   Argument #0: [./arguments]
   Argument #1: [arguments]
   Argument #2: [arguments.c]
-  Argument #3: [ass4]
-  Argument #4: [bst_visualisation]
-  Argument #5: [Makefile]
-  Argument #6: [SDL]
-  Argument #7: [t]
+  ...
   Argument #8: [test.c]
   ```
 
@@ -435,18 +431,6 @@ Building on what you saw in the videos and the previous exercises, write a shell
   ## Word list exercises
 
   dictionary file `/usr/share/dict/words` 
-
-  - The first word in the file.
-
-    ```
-    head -n 1 /usr/share/dict/words
-    ```
-
-  - The last word in the file.
-
-    ```
-    tail -n 1 /usr/share/dict/words
-    ```
 
   - The number of words in the words file - there is one word per line.
 
