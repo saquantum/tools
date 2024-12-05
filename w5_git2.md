@@ -45,18 +45,10 @@ Fast-forward
 
 $ git add .
 $ git commit
-hint: Waiting for your editor to close the file... unix2dos: converting file C:/Users/lcl/GitStudy/.git/COMMIT_EDITMSG to DOS format...
-dos2unix: converting file C:/Users/lcl/GitStudy/.git/COMMIT_EDITMSG to Unix format...
-[main aaa330b] GitStudy2
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 GitStudy2.txt
 
 $ git fetch
-remote: Enumerating objects: 5, done.
-remote: Counting objects: 100% (5/5), done.
-remote: Compressing objects: 100% (1/1), done.
-remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0 (from 0)
-Unpacking objects: 100% (3/3), 247 bytes | 30.00 KiB/s, done.
 From github.com:Cailian-Liu/GitStudy
    3b7071f..48675d0  main       -> origin/main
 
@@ -96,11 +88,6 @@ If member two does a `git status` after the rebase, they will see `ahead of orig
 
 ```
 $ git fetch
-remote: Enumerating objects: 5, done.
-remote: Counting objects: 100% (5/5), done.
-remote: Compressing objects: 100% (1/1), done.
-remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0 (from 0)
-Unpacking objects: 100% (3/3), 247 bytes | 30.00 KiB/s, done.
 From github.com:Cailian-Liu/GitStudy
    3b7071f..48675d0  main       -> origin/main
 
@@ -136,12 +123,6 @@ Date:   Sun Dec 1 16:22:36 2024 +0000
     abc
 
 $ git push
-Enumerating objects: 4, done.
-Counting objects: 100% (4/4), done.
-Delta compression using up to 16 threads
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 279 bytes | 279.00 KiB/s, done.
-Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
 To github.com:Cailian-Liu/GitStudy.git
    48675d0..b58135f  main -> main
 ```
@@ -156,11 +137,6 @@ The second team member types `git pull`. Since this is a fake conflict (differen
 
 ```
 $ git fetch
-remote: Enumerating objects: 5, done.
-remote: Counting objects: 100% (5/5), done.
-remote: Compressing objects: 100% (2/2), done.
-remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0 (from 0)
-Unpacking objects: 100% (3/3), 282 bytes | 35.00 KiB/s, done.
 From github.com:Cailian-Liu/GitStudy
    b58135f..7c9d977  main       -> origin/main
 
@@ -173,18 +149,11 @@ and have 1 and 1 different commits each, respectively.
 nothing to commit, working tree clean
 
 $ git pull
-hint: Waiting for your editor to close the file... unix2dos: converting file C:/Users/lcl/GitStudy/.git/MERGE_MSG to DOS format...
-dos2unix: converting file C:/Users/lcl/GitStudy/.git/MERGE_MSG to Unix format...
 Merge made by the 'ort' strategy.
  GitStudy1.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 $ git push
-Enumerating objects: 9, done.
-Counting objects: 100% (8/8), done.
-Delta compression using up to 16 threads
-Compressing objects: 100% (4/4), done.
-Writing objects: 100% (5/5), 583 bytes | 583.00 KiB/s, done.
 Total 5 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
 To github.com:Cailian-Liu/GitStudy.git
    7c9d977..29de273  main -> main
@@ -222,11 +191,6 @@ Member two can now do the following:
 
 ```
 $ git fetch
-remote: Enumerating objects: 5, done.
-remote: Counting objects: 100% (5/5), done.
-remote: Compressing objects: 100% (2/2), done.
-remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0 (from 0)
-Unpacking objects: 100% (3/3), 285 bytes | 31.00 KiB/s, done.
 From github.com:Cailian-Liu/GitStudy
    29de273..86fca56  main       -> origin/main
 
@@ -289,16 +253,9 @@ dos2unix: converting file C:/Users/lcl/GitStudy/.git/COMMIT_EDITMSG to Unix form
 [main ac64caa] Merge branch 'main' of github.com:Cailian-Liu/GitStudy
 
 $ git push
-Enumerating objects: 10, done.
-Counting objects: 100% (10/10), done.
-Delta compression using up to 16 threads
-Compressing objects: 100% (4/4), done.
-Writing objects: 100% (6/6), 648 bytes | 648.00 KiB/s, done.
-Total 6 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
 To github.com:Cailian-Liu/GitStudy.git
    86fca56..ac64caa  main -> main
 ```
-
 
 
 # Working with others
@@ -359,11 +316,6 @@ Switched to a new branch 'lclbranch'
 $ git add .
 $ git commit
 $ git fetch
-remote: Enumerating objects: 5, done.
-remote: Counting objects: 100% (5/5), done.
-remote: Compressing objects: 100% (3/3), done.
-remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0 (from 0)
-Unpacking objects: 100% (3/3), 286 bytes | 31.00 KiB/s, done.
 From github.com:Cailian-Liu/GitStudy
  * [new branch]      yzhbranch  -> origin/yzhbranch
 
@@ -381,11 +333,6 @@ To have this happen automatically for branches without a tracking
 upstream, see 'push.autoSetupRemote' in 'git help config'.
 
 $ git push --set-upstream origin lclbranch
-Enumerating objects: 5, done.
-Counting objects: 100% (5/5), done.
-Delta compression using up to 16 threads
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 334 bytes | 334.00 KiB/s, done.
 Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
 remote:
 remote: Create a pull request for 'lclbranch' on GitHub by visiting:
@@ -449,11 +396,6 @@ Merge made by the 'ort' strategy.
  1 file changed, 4 insertions(+)
 
 $ git push
-Enumerating objects: 7, done.
-Counting objects: 100% (7/7), done.
-Delta compression using up to 16 threads
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 371 bytes | 371.00 KiB/s, done.
 Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
 To github.com:Cailian-Liu/GitStudy.git
    9ce72dd..a1085cc  lclbranch -> lclbranch
